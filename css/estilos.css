@@ -312,4 +312,22 @@ footer p {
     section table {
         max-width: 100%;
     }
+
+    /* ==========================================
+   9. SALUDO DE BIENVENIDA
+   ========================================== */
+    .saludo-bienvenida {
+        max-width: 1200px;
+        width: 90%;
+        margin: 20px auto 0 auto;
+        padding: 12px 20px;
+        background-color: var(--cyber-fondo);
+        border-left: 4px solid var(--cyber-neon);
+        color: var(--cyber-neon);
+        font-family: 'Courier New', monospace;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+        text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+        border-radius: 0 5px 5px 0;
+    }
 }
