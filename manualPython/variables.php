@@ -17,7 +17,9 @@
         <h3> <?php include 'saludo.php'; ?></h3>
         <h1>Variables</h1>
         <pre>
-            Una variable en Python es un contenedor para almacenar valores de datos. A diferencia de otros lenguajes, no necesitas declarar su tipo; se crea automáticamente en el momento en que le asignas un valor por primera vez usando el signo =.
+            Una variable en Python es un contenedor para almacenar valores de datos. A diferencia de otros lenguajes,
+             no necesitas declarar su tipo; se crea automáticamente en el momento en que le asignas un valor por primera
+              vez usando el signo =.
 Aquí tienes los bloques de código listos para copiar y pegar:
 
 Explicación rápida en código
