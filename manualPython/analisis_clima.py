@@ -168,7 +168,7 @@ ejes.scatter(pares['humedad_pct'], pares['temp_media_c'], s=28, color=COLOR_MEDI
              alpha=0.75, edgecolors='white', linewidths=1)
 x = pd.Series([pares['humedad_pct'].min(), pares['humedad_pct'].max()])
 ejes.plot(x, pendiente * x + intercepto, color=TEXTO, linewidth=1.5, linestyle='--')
-ejes.set_title(f'Humedad relativa vs temperatura media  (r = {correlacion:.2f})')
+ejes.set_title(f'Humedad relativa vs temperatura media  (r = {numero(correlacion, 2)})')
 ejes.set_xlabel('Humedad relativa media (%)')
 ejes.set_ylabel('Temperatura media (°C)')
 guardar(figura, 'grafica4_dispersion.png')

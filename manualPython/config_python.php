@@ -38,5 +38,12 @@ function ejecutarPython($script, array $argumentos = [])
     foreach ($argumentos as $argumento) {
         $comando .= ' ' . escapeshellarg($argumento);
     }
-    return trim((string) shell_exec($comando . ' 2>&1'));
+    $salida = trim((string) shell_exec($comando . ' 2>&1'));
+
+    // Los mensajes de cmd.exe llegan en la codificación de consola de Windows (CP850);
+    // sin convertirlos, htmlspecialchars() devolvería una cadena vacía
+    if (!mb_check_encoding($salida, 'UTF-8')) {
+        $salida = mb_convert_encoding($salida, 'UTF-8', 'CP850');
+    }
+    return $salida;
 }

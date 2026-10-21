@@ -63,6 +63,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv'])) {
             array_map('unlink', array_merge(glob($carpeta . '/grafica*.png') ?: [], glob($carpeta . '/resumen.json') ?: []));
             $salida = ejecutarPython(__DIR__ . '/analisis_clima.py', [$carpeta . '/clima.csv', $carpeta]);
 
+            // En Windows el lanzamiento de Python desde Apache falló alguna vez sin motivo aparente:
+            // se reintenta una vez y se deja la salida en python.log para diagnosticar
+            if (!is_file($carpeta . '/resumen.json')) {
+                $salida .= "\n--- reintento ---\n" . ejecutarPython(__DIR__ . '/analisis_clima.py', [$carpeta . '/clima.csv', $carpeta]);
+            }
+            file_put_contents($carpeta . '/python.log', date('Y-m-d H:i:s') . "\n" . $salida . "\n");
+
             if (is_file($carpeta . '/resumen.json')) {
                 $_SESSION['csv_subido'] = [
                     'nombre' => basename($archivo['name']),
