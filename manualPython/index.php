@@ -1,12 +1,4 @@
-<?php
-session_start();
-
-// Si no hay sesión iniciada, redirige al login
-if (!isset($_SESSION['nombre'])) {
-    header('Location: ../home.php');
-    exit();
-}
-?>
+<?php require 'proteger.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
