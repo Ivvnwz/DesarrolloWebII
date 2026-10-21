@@ -638,3 +638,65 @@ footer:not(:has(*)) {
         max-width: 100%;
     }
 }
+
+/* ==========================================
+   9. LOGIN (python.php)
+   ========================================== */
+section.acceso {
+    background: none;
+    border: none;
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 24px 0;
+}
+
+.acceso-tarjeta {
+    width: 100%;
+    max-width: 420px;
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-top: 4px solid var(--color-primario);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra-fuerte);
+    padding: 36px 36px 32px;
+}
+
+.acceso-etiqueta {
+    font-size: 0.75rem !important;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primario);
+    margin-bottom: 6px !important;
+}
+
+.acceso-tarjeta h1 {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+}
+
+.acceso-texto {
+    color: var(--color-texto-suave);
+    font-size: 0.95rem !important;
+    margin-bottom: 22px !important;
+}
+
+.acceso-formulario label {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-secundario);
+    margin: 14px 0 6px;
+}
+
+.acceso-botones {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.acceso-botones input[type="submit"] {
+    flex: 1;
+}

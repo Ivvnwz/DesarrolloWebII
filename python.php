@@ -14,17 +14,17 @@ if (isset($_POST['enviar'])) {
         header('Location: manualPython/index.php');
         exit();
     } else {
-        $error = "<p style='color:red; text-align:center;'>Usuario o contraseña incorrectos</p>";
+        $error = "<p class='alerta alerta-error'>Usuario o contraseña incorrectos</p>";
     }
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina inicial</title>
+    <title>Acceso al manual de Python</title>
     <link rel="shortcut icon" href="imagenes/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/estilos.css">
 </head>
@@ -33,32 +33,27 @@ if (isset($_POST['enviar'])) {
     <?php
     include 'menu.html';
     ?>
-    <section>
-        <h1> Acceder al manual de Python </h1>
+    <section class="acceso">
+        <div class="acceso-tarjeta">
+            <p class="acceso-etiqueta">Área privada</p>
+            <h1>Acceder al manual de Python</h1>
+            <p class="acceso-texto">Inicia sesión para ver el manual y el sistema de análisis de datos.</p>
 
-        <form action="python.php" method="POST">
-            <table border=5>
-                <TR>
-                    <th colspan="2">Verificación de Usuario</th>
-                </TR>
-                <tr>
-                    <th>Login</th>
-                    <td><input type="text" name="login"></td>
+            <?php if ($error !== '') echo $error; ?>
 
-                </tr>
-                <tr>
-                    <th>Password</th>
-                    <td><input type="password" name="clave"></td>
+            <form action="python.php" method="POST" class="acceso-formulario">
+                <label for="login">Usuario</label>
+                <input type="text" id="login" name="login" autocomplete="username" required autofocus>
 
-                </tr>
-                <tr>
-                    <td><input type="submit" name="enviar"></td>
-                    <td><input type="reset"></td>
-                </tr>
-            </table>
+                <label for="clave">Contraseña</label>
+                <input type="password" id="clave" name="clave" autocomplete="current-password" required>
 
-        </form>
-        <?php if ($error !== '') echo $error; ?>
+                <div class="acceso-botones">
+                    <input type="submit" name="enviar" value="Ingresar">
+                    <input type="reset" value="Limpiar">
+                </div>
+            </form>
+        </div>
     </section>
     <footer></footer>
 </body>
