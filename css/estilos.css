@@ -186,6 +186,7 @@ section h2 {
     font-size: 1.4rem;
     font-weight: 600;
     letter-spacing: -0.01em;
+    line-height: 1.3;
     margin: 32px 0 14px;
 }
 
@@ -196,6 +197,7 @@ section > h2:first-child {
 
 section h3 {
     color: var(--color-secundario);
+    line-height: 1.35;
     font-size: 1.1rem;
     font-weight: 600;
     margin: 24px 0 10px;
@@ -244,6 +246,10 @@ pre {
     margin: 12px 0 20px;
     overflow-x: auto;
     white-space: pre-wrap;
+}
+
+td code {
+    white-space: nowrap;
 }
 
 pre code {
@@ -607,24 +613,34 @@ footer:not(:has(*)) {
    8. RESPONSIVE (ADAPTACIÓN A MÓVILES)
    ========================================== */
 @media (max-width: 768px) {
+    /* Menú en una sola fila deslizable (tipo pestañas) para no tapar la pantalla */
     nav ul {
-        flex-direction: column;
-        padding: 0;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        scrollbar-width: none;
+        padding: 0 4px;
     }
 
-    nav ul li a {
-        padding: 12px 16px;
-        text-align: center;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    nav ul li a::after {
+    nav ul::-webkit-scrollbar {
         display: none;
     }
 
-    nav ul li a.activo {
-        background-color: rgba(255, 255, 255, 0.08);
-        box-shadow: inset 3px 0 0 var(--color-primario);
+    nav ul li a {
+        padding: 13px 14px;
+        white-space: nowrap;
+    }
+
+    nav ul li a::after {
+        left: 14px;
+        right: 14px;
+    }
+
+    /* Tablas anchas: desplazamiento horizontal dentro de la tabla */
+    section table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
     }
 
     section {

@@ -20,6 +20,7 @@
     document.querySelectorAll('nav a').forEach(function (enlace) {
         if (enlace.pathname.toLowerCase() === location.pathname.toLowerCase()) {
             enlace.classList.add('activo');
+            enlace.scrollIntoView({ block: 'nearest', inline: 'center' });
         }
     });
 </script>
