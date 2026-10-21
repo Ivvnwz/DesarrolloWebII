@@ -20,7 +20,7 @@
     exit();
     ?>
     <section>
-        <h3> <?php include 'saludo.php'; ?></h3>
+        <?php include 'saludo.php'; ?>
         <h1>Finalizar sesion (logout)</h1>
     </section>
 </body>

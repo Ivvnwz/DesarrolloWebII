@@ -8,7 +8,7 @@ if (!isset($_SESSION['nombre'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -24,12 +24,10 @@ if (!isset($_SESSION['nombre'])) {
     ?>
     <section>
 
-        <h3> <?php include 'saludo.php'; ?></h3>
+        <?php include 'saludo.php'; ?>
 
         <h1>Conceptos Python</h1>
-        ¿Qué es Python?
-        <br>
-        Python es un lenguaje de programacion:
+        <p><strong>¿Qué es Python?</strong> Python es un lenguaje de programación:</p>
         <ul>
             <li>Sintaxis clara y legible: Utiliza una estructura limpia muy cercana al inglés y recurre a la indentación
                 obligatoria en lugar de llaves, lo que obliga a escribir código ordenado de forma natural.</li>
@@ -69,25 +67,15 @@ if (!isset($_SESSION['nombre'])) {
                 para ver el resultado en pantalla.</li>
         </ol>
         <h1>Ejemplo:</h1>
-        <br>
-        # 1. Definición de variables (Tipado dinámico)
-        <br>
-        nombre = "Carlos"
-        <br>
-        edad = 20
-        <br>
+        <pre><code># 1. Definición de variables (Tipado dinámico)
+nombre = "Carlos"
+edad = 20
 
-        # 2. Estructura de control condicional (Usa indentación con espacios)
-        <br>
-        if edad >= 18:
-        <br>
-        print(f"Hola {nombre}, eres mayor de edad y puedes pasar.")
-        <br>
-        else:
-        <br>
-        print(f"Hola {nombre}, eres menor de edad.")
-
-
+# 2. Estructura de control condicional (Usa indentación con espacios)
+if edad &gt;= 18:
+    print(f"Hola {nombre}, eres mayor de edad y puedes pasar.")
+else:
+    print(f"Hola {nombre}, eres menor de edad.")</code></pre>
     </section>
     <footer></footer>
 </body>

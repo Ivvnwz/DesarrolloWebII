@@ -1,6 +1,6 @@
 <?php require 'proteger.php'; ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -15,65 +15,52 @@
     include 'menuPython.html';
     ?>
     <section>
-        <h3> <?php include 'saludo.php'; ?></h3>
+        <?php include 'saludo.php'; ?>
         <h1>Variables</h1>
-        <pre>
-            Una variable en Python es un contenedor para almacenar valores de datos. A diferencia de otros lenguajes,
-             no necesitas declarar su tipo; se crea automáticamente en el momento en que le asignas un valor por primera
-              vez usando el signo =.
-Aquí tienes los bloques de código listos para copiar y pegar:
+        <p>
+            Una variable en Python es un contenedor para almacenar valores de datos. A diferencia de otros
+            lenguajes, no necesitas declarar su tipo; se crea automáticamente en el momento en que le asignas
+            un valor por primera vez usando el signo <code>=</code>.
+        </p>
+        <p>Aquí tienes los bloques de código listos para copiar y pegar.</p>
 
-Explicación rápida en código
+        <h2>Explicación rápida en código</h2>
+        <p>Sintaxis: <code>nombre_variable = valor</code></p>
+        <pre><code>edad = 25          # Se crea la variable 'edad' y guarda el número 25
+print(edad)        # Muestra 25 en pantalla</code></pre>
 
+        <h2>Tipos de variables comunes</h2>
 
-Sintaxis: nombre_variable = valor
+        <h3>Variables de texto (strings)</h3>
+        <pre><code>nombre = "Ana"
+ciudad = 'Madrid'</code></pre>
 
-edad = 25          # Se crea la variable 'edad' y guarda el número 25
-print(edad)        # Muestra 25 en pantalla
-
-Tipos de variables comunes para copiar y pegar
-
-
-Variables de texto (Strings)
-
-nombre = "Ana"
-ciudad = 'Madrid'
-
-Variables numéricas (Enteros y Decimales)
-
-precio = 19.99
+        <h3>Variables numéricas (enteros y decimales)</h3>
+        <pre><code>precio = 19.99
 cantidad = 3
-año_actual = 2026
+año_actual = 2026</code></pre>
 
-Variables booleanas (Verdadero o Falso)
+        <h3>Variables booleanas (verdadero o falso)</h3>
+        <pre><code>es_mayor_de_edad = True
+tiene_descuento = False</code></pre>
 
-es_mayor_de_edad = True
-tiene_descuento = False
+        <h3>Variables de colecciones (listas y diccionarios)</h3>
+        <pre><code>lista_compras = ["manzana", "pan", "leche"]
+usuario = {"nombre": "Carlos", "id": 1024}</code></pre>
 
-Variables de colecciones (Listas y Diccionarios)
+        <h2>Operaciones rápidas con variables</h2>
 
-lista_compras = ["manzana", "pan", "leche"]
-usuario = {"nombre": "Carlos", "id": 1024}
+        <h3>Modificar el valor de una variable</h3>
+        <pre><code>contador = 1
+contador = contador + 1  # Ahora vale 2</code></pre>
 
-Operaciones rápidas con variables
-
-
-Modificar el valor de una variable
-
-contador = 1
-contador = contador + 1  # Ahora vale 2
-
-Sumar variables numéricas
-
-producto_a = 10
+        <h3>Sumar variables numéricas</h3>
+        <pre><code>producto_a = 10
 producto_b = 20
-total = producto_a + producto_b
+total = producto_a + producto_b</code></pre>
 
-Unir (concatenar) textos
-
-saludo = "Hola " + nombre
-
-        </pre>
+        <h3>Unir (concatenar) textos</h3>
+        <pre><code>saludo = "Hola " + nombre</code></pre>
     </section>
 </body>
 

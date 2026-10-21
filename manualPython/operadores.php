@@ -15,7 +15,7 @@
     include 'menuPython.html';
     ?>
     <section>
-        <h3> <?php include 'saludo.php'; ?></h3>
+        <?php include 'saludo.php'; ?>
         <h1>Operadores</h1>
     </section>
 </body>

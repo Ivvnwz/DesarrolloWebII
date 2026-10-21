@@ -222,6 +222,7 @@ section li::marker {
 /* Código */
 code {
     font-family: var(--fuente-codigo);
+    font-variant-ligatures: none;
     font-size: 0.88em;
     background-color: #EEF2F7;
     color: var(--color-secundario);
@@ -231,6 +232,8 @@ code {
 
 pre {
     font-family: var(--fuente-codigo);
+    /* Sin ligaduras: que ">=" se vea tal cual y no como un símbolo */
+    font-variant-ligatures: none;
     font-size: 0.88rem;
     line-height: 1.6;
     background-color: #F7F9FC;
@@ -582,7 +585,7 @@ footer:not(:has(*)) {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 18px;
+    margin: 0 0 18px;
     padding: 6px 14px 6px 10px;
     background-color: #FDF3E6;
     border: 1px solid #F5D9B3;
@@ -699,4 +702,27 @@ section.acceso {
 
 .acceso-botones input[type="submit"] {
     flex: 1;
+}
+
+/* ==========================================
+   10. MANUAL DE PYTHON
+   ========================================== */
+section pre + h2,
+section pre + h3 {
+    margin-top: 28px;
+}
+
+/* Contenedores de las gráficas Chart.js (Graficas.php) */
+.lienzo-grafica {
+    position: relative;
+    height: 320px;
+    margin: 8px 0 28px;
+    padding: 16px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+}
+
+.lienzo-dona {
+    height: 340px;
+    max-width: 420px;
 }

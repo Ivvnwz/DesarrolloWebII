@@ -1,6 +1,6 @@
 <?php require 'proteger.php'; ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -15,75 +15,60 @@
     include 'menuPython.html';
     ?>
     <section>
-        <h3> <?php include 'saludo.php'; ?></h3>
+        <?php include 'saludo.php'; ?>
         <h1>Comandos</h1>
-        <pre>
-Estructuras y comandos básicos
+        <p>Estructuras y comandos básicos de Python.</p>
 
+        <h2>Entrada y salida de datos</h2>
+        <pre><code>print("¡Hola, mundo!")
+nombre = input("Introduce tu nombre: ")</code></pre>
 
-Entrada y salida de datos
-
-print("¡Hola, mundo!")
-nombre = input("Introduce tu nombre: ")
-
-Condicionales (Toma de decisiones)
-
-edad = 20
-if edad >= 18:
-print("Mayor de edad")
+        <h2>Condicionales (toma de decisiones)</h2>
+        <pre><code>edad = 20
+if edad &gt;= 18:
+    print("Mayor de edad")
 else:
-print("Menor de edad")
+    print("Menor de edad")</code></pre>
 
-Bucle For (Repetir un número fijo de veces)
+        <h2>Bucle for (repetir un número fijo de veces)</h2>
+        <pre><code>for i in range(5):
+    print(f"Repetición número: {i}")</code></pre>
 
-for i in range(5):
-print(f"Repetición número: {i}")
+        <h2>Bucle while (repetir mientras se cumpla una condición)</h2>
+        <pre><code>contador = 0
+while contador &lt; 3:
+    print(contador)
+    contador += 1</code></pre>
 
-Bucle While (Repetir mientras se cumpla una condición)
+        <h2>Funciones integradas (built-in) comunes</h2>
 
-contador = 0
-while contador < 3:
-print(contador)
-contador += 1
+        <h3>Obtener la longitud de un texto o lista</h3>
+        <pre><code>longitud = len("Python")</code></pre>
 
-Funciones integradas (Built-in) comunes
+        <h3>Conocer el tipo de dato</h3>
+        <pre><code>tipo = type(10.5)</code></pre>
 
-
-Obtener la longitud de un texto o lista
-
-longitud = len("Python")
-
-Conocer el tipo de dato
-
-tipo = type(10.5)
-
-Convertir tipos de datos (Casting)
-
-entero = int("25")
+        <h3>Convertir tipos de datos (casting)</h3>
+        <pre><code>entero = int("25")
 decimal = float(10)
-texto = str(4.5)
+texto = str(4.5)</code></pre>
 
-Operaciones matemáticas simples
-
-absoluto = abs(-7)
+        <h3>Operaciones matemáticas simples</h3>
+        <pre><code>absoluto = abs(-7)
 redondeado = round(3.14159, 2)
 maximo = max(5, 12, 8)
-minimo = min(5, 12, 8)
+minimo = min(5, 12, 8)</code></pre>
 
-Estructura para crear tus propias funciones
+        <h2>Estructura para crear tus propias funciones</h2>
 
+        <h3>Definición de una función básica con retorno</h3>
+        <pre><code>def sumar(a, b):
+    resultado = a + b
+    return resultado</code></pre>
 
-Definición de una función básica con retorno
-
-def sumar(a, b):
-resultado = a + b
-return resultado
-
-Llamada y uso de la función
-
-mi_suma = sumar(5, 10)
-print(mi_suma)
-</pre>
+        <h3>Llamada y uso de la función</h3>
+        <pre><code>mi_suma = sumar(5, 10)
+print(mi_suma)</code></pre>
     </section>
 </body>
 

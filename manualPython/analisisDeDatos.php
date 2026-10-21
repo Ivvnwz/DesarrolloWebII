@@ -102,7 +102,7 @@ if (is_file($carpeta . '/resumen.json')) {
 <body>
     <?php include 'menuPython.html'; ?>
     <section>
-        <h3><?php include 'saludo.php'; ?></h3>
+        <?php include 'saludo.php'; ?>
         <h1>Análisis de datos con Python</h1>
         <h2>Objetivos de aprendizaje</h2>
 
