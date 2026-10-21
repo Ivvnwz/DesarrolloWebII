@@ -141,6 +141,9 @@ if (is_file($carpeta . '/resumen.json')) {
 
         <?php if ($resumen): ?>
             <h2>3. Reporte</h2>
+            <p class="acciones-reporte">
+                <a class="boton" href="exportar_pdf.php">Exportar reporte a PDF</a>
+            </p>
             <article class="reporte" id="reporte">
                 <header class="reporte-encabezado">
                     <p class="reporte-etiqueta">Sistema de información climática</p>
