@@ -69,7 +69,17 @@ def guardar(figura, nombre):
 
 
 def nombre_mes(periodo):
-    return f'{MESES_LARGOS[periodo.month - 1]} {periodo.year}'
+    return f'{MESES_LARGOS[periodo.month - 1]} de {periodo.year}'
+
+
+def fecha_larga(fecha):
+    return f'{fecha.day} de {MESES_LARGOS[fecha.month - 1]} de {fecha.year}'
+
+
+def numero(valor, decimales=1):
+    # Formato colombiano: punto para miles y coma para decimales
+    texto = f'{valor:,.{decimales}f}'
+    return texto.replace(',', '_').replace('.', ',').replace('_', '.')
 
 
 # ------------------------------------------------------------------
@@ -221,25 +231,26 @@ resumen = {
         {'archivo': 'grafica1_temperatura.png', 'titulo': 'Evolución de la temperatura',
          'descripcion': 'Tendencia de las temperaturas máxima, media y mínima suavizada con una media móvil de 7 días.'},
         {'archivo': 'grafica2_lluvia_mensual.png', 'titulo': 'Precipitación mensual',
-         'descripcion': f'El mes más lluvioso fue {nombre_mes(mes_lluvioso)} con {lluvia_mes.max():.0f} mm.'},
+         'descripcion': f'El mes más lluvioso fue {nombre_mes(mes_lluvioso)} con {numero(lluvia_mes.max(), 0)} mm.'},
         {'archivo': 'grafica3_histograma.png', 'titulo': 'Distribución de la temperatura media',
-         'descripcion': f'La mayoría de los días se concentran alrededor de {promedio:.1f} °C.'},
+         'descripcion': f'La mayoría de los días se concentran alrededor de {numero(promedio)} °C.'},
         {'archivo': 'grafica4_dispersion.png', 'titulo': 'Humedad vs temperatura',
-         'descripcion': f'Correlación r = {correlacion:.2f}: {relacion}.'},
+         'descripcion': f'Correlación r = {numero(correlacion, 2)}: {relacion}.'},
         {'archivo': 'grafica5_dias_lluvia.png', 'titulo': 'Intensidad de la lluvia',
          'descripcion': f'{dias_lluvia} de {len(datos)} días registraron al menos 1 mm de lluvia.'},
     ],
 }
 
 resumen['texto'] = (
-    f"Entre el {resumen['fecha_inicio']} y el {resumen['fecha_fin']} ({resumen['dias']} días), "
-    f"Popayán registró una temperatura media de {resumen['temp_media']} °C. "
-    f"El día más caluroso fue el {resumen['temp_max_fecha']} con {resumen['temp_max']} °C y la "
-    f"mínima más baja fue de {resumen['temp_min']} °C el {resumen['temp_min_fecha']}. "
-    f"Llovieron {resumen['lluvia_total']:.0f} mm en total, con {dias_lluvia} días de lluvia; "
-    f"{resumen['mes_lluvioso']} fue el mes más lluvioso ({resumen['mes_lluvioso_mm']:.0f} mm) y "
-    f"{resumen['mes_seco']} el más seco ({resumen['mes_seco_mm']:.0f} mm). "
-    f"La humedad relativa promedio fue de {resumen['humedad_media']} % y {relacion}."
+    f"Entre el {fecha_larga(datos['fecha'].min())} y el {fecha_larga(datos['fecha'].max())} "
+    f"({resumen['dias']} días), Popayán registró una temperatura media de {numero(promedio)} °C. "
+    f"El día más caluroso fue el {fecha_larga(dia_caluroso['fecha'])} con "
+    f"{numero(dia_caluroso['temp_max_c'])} °C y la mínima más baja fue de "
+    f"{numero(dia_frio['temp_min_c'])} °C el {fecha_larga(dia_frio['fecha'])}. "
+    f"Llovieron {numero(resumen['lluvia_total'], 0)} mm en total, con {dias_lluvia} días de lluvia; "
+    f"{nombre_mes(mes_lluvioso)} fue el mes más lluvioso ({numero(lluvia_mes.max(), 0)} mm) y "
+    f"{nombre_mes(mes_seco)} el más seco ({numero(lluvia_mes.min(), 0)} mm). "
+    f"La humedad relativa promedio fue de {numero(resumen['humedad_media'])} % y {relacion}."
 )
 
 with open(os.path.join(carpeta, 'resumen.json'), 'w', encoding='utf-8') as salida:

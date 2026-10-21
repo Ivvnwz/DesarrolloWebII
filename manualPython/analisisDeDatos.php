@@ -2,6 +2,17 @@
 require 'proteger.php';
 require 'config_python.php';
 
+date_default_timezone_set('America/Bogota');
+
+// Convierte "2026-10-20" en "20 de octubre de 2026"
+function fechaLarga($fecha)
+{
+    $meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
+        'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    $partes = explode('-', $fecha);
+    return (int) $partes[2] . ' de ' . $meses[(int) $partes[1] - 1] . ' de ' . $partes[0];
+}
+
 // Columnas que debe traer el CSV descargado desde la API
 $columnasRequeridas = [
     'fecha', 'temp_max_c', 'temp_min_c', 'temp_media_c',
@@ -129,14 +140,71 @@ if (is_file($carpeta . '/resumen.json')) {
         <?php endif; ?>
 
         <?php if ($resumen): ?>
-            <h2>3. Gráficas generadas con Python</h2>
-            <?php foreach ($resumen['graficas'] as $grafica): ?>
-                <figure class="grafica">
-                    <img src="imagen.php?f=<?= urlencode($grafica['archivo']) ?>&amp;v=<?= time() ?>"
-                        alt="<?= htmlspecialchars($grafica['titulo']) ?>">
-                    <figcaption><?= htmlspecialchars($grafica['descripcion']) ?></figcaption>
-                </figure>
-            <?php endforeach; ?>
+            <h2>3. Reporte</h2>
+            <article class="reporte" id="reporte">
+                <header class="reporte-encabezado">
+                    <p class="reporte-etiqueta">Sistema de información climática</p>
+                    <h2 class="reporte-titulo">Reporte climático de Popayán</h2>
+                    <p class="reporte-subtitulo">
+                        Análisis del clima diario del <?= fechaLarga($resumen['fecha_inicio']) ?>
+                        al <?= fechaLarga($resumen['fecha_fin']) ?>
+                    </p>
+                    <dl class="reporte-datos">
+                        <div>
+                            <dt>Fecha del reporte</dt>
+                            <dd><?= fechaLarga(date('Y-m-d')) ?>, <?= date('H:i') ?></dd>
+                        </div>
+                        <div>
+                            <dt>Elaborado por</dt>
+                            <dd><?= htmlspecialchars($_SESSION['nombre']) ?></dd>
+                        </div>
+                        <div>
+                            <dt>Archivo analizado</dt>
+                            <dd><?= htmlspecialchars($_SESSION['csv_subido']['nombre'] ?? 'clima.csv') ?></dd>
+                        </div>
+                        <div>
+                            <dt>Fuente</dt>
+                            <dd>Open-Meteo · procesado con pandas y matplotlib</dd>
+                        </div>
+                    </dl>
+                </header>
+
+                <ul class="indicadores">
+                    <li>
+                        <span class="indicador-valor"><?= number_format($resumen['temp_media'], 1, ',', '.') ?> °C</span>
+                        <span class="indicador-nombre">Temperatura media</span>
+                    </li>
+                    <li>
+                        <span class="indicador-valor"><?= number_format($resumen['lluvia_total'], 0, ',', '.') ?> mm</span>
+                        <span class="indicador-nombre">Lluvia acumulada (<?= $resumen['dias_lluvia'] ?> días)</span>
+                    </li>
+                    <li>
+                        <span class="indicador-valor"><?= number_format($resumen['temp_max'], 1, ',', '.') ?> °C</span>
+                        <span class="indicador-nombre">Máxima · <?= fechaLarga($resumen['temp_max_fecha']) ?></span>
+                    </li>
+                    <li>
+                        <span class="indicador-valor"><?= htmlspecialchars(ucfirst($resumen['mes_lluvioso'])) ?></span>
+                        <span class="indicador-nombre">Mes más lluvioso (<?= number_format($resumen['mes_lluvioso_mm'], 0, ',', '.') ?> mm)</span>
+                    </li>
+                </ul>
+
+                <h3 class="reporte-seccion">Resumen</h3>
+                <p class="reporte-resumen"><?= htmlspecialchars($resumen['texto']) ?></p>
+
+                <h3 class="reporte-seccion">Gráficas</h3>
+                <div class="reporte-graficas">
+                    <?php foreach ($resumen['graficas'] as $numero => $grafica): ?>
+                        <figure class="grafica">
+                            <img src="imagen.php?f=<?= urlencode($grafica['archivo']) ?>&amp;v=<?= time() ?>"
+                                alt="<?= htmlspecialchars($grafica['titulo']) ?>">
+                            <figcaption>
+                                <strong>Figura <?= $numero + 1 ?>. <?= htmlspecialchars($grafica['titulo']) ?>.</strong>
+                                <?= htmlspecialchars($grafica['descripcion']) ?>
+                            </figcaption>
+                        </figure>
+                    <?php endforeach; ?>
+                </div>
+            </article>
         <?php endif; ?>
     </section>
 </body>
