@@ -15,6 +15,12 @@ carpeta = sys.argv[2] if len(sys.argv) > 2 else 'datos'
 # matplotlib necesita una carpeta con permisos de escritura para su caché
 os.environ.setdefault('MPLCONFIGDIR', os.path.join(carpeta, '.matplotlib'))
 
+# OpenBLAS (usado por numpy/pandas) reserva memoria para un hilo por núcleo al arrancar;
+# lanzado desde Apache esa reserva a veces falla ("Memory allocation still failed").
+# Con un solo hilo sobra para 365 filas y el arranque es estable.
+for variable in ('OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS', 'MKL_NUM_THREADS'):
+    os.environ.setdefault(variable, '1')
+
 import numpy
 import pandas as pd
 import matplotlib
