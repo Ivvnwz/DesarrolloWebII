@@ -1,5 +1,5 @@
 <?php
-session_start();
+require 'proteger.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     shell_exec('python generar_grafica.py 2>&1');
 }

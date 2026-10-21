@@ -1,3 +1,4 @@
+<?php require 'proteger.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 

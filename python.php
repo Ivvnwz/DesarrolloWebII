@@ -1,3 +1,23 @@
+<?php
+session_start();
+//datos de la base de datos
+$loginUsuario = "admin";
+$claveUsuario = "123";
+$nombre = "Elton Tito";
+$error = '';
+if (isset($_POST['enviar'])) {
+    $login = $_POST['login'];
+    $clave = $_POST['clave'];
+
+    if (($login == $loginUsuario) && ($clave == $claveUsuario)) {
+        $_SESSION['nombre'] = $nombre;
+        header('Location: manualPython/index.php');
+        exit();
+    } else {
+        $error = "<p style='color:red; text-align:center;'>Usuario o contraseña incorrectos</p>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,25 +58,7 @@
             </table>
 
         </form>
-        <?php
-        //datos de la base de datos
-        $loginUsuario = "admin";
-        $claveUsuario = "123";
-        $nombre = "Elton Tito";
-        if (isset($_POST['enviar'])) {
-            $login = $_POST['login'];
-            $clave = $_POST['clave'];
-
-            if (($login == $loginUsuario) && ($clave == $claveUsuario)) {
-                session_start();
-                $_SESSION['nombre'] = $nombre;
-                header('Location: manualPython/index.php');
-                exit();
-            } else {
-                echo "<p style='color:red; text-align:center;'>Usuario o contraseña incorrectos</p>";
-            }
-        }
-        ?>
+        <?php if ($error !== '') echo $error; ?>
     </section>
     <footer></footer>
 </body>

@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php require 'proteger.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
