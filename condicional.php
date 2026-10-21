@@ -14,7 +14,7 @@
     include 'menu.html';
     ?>
 
-    <section>
+    <section class="calculadora">
         <h1>Condicionales</h1>
 
         <form action="condicional.php" method="POST">

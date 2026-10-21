@@ -158,8 +158,8 @@ section p {
    5. CALCULADORA (ESTILO CYBERPUNK)
    ========================================== */
 
-/* Contenedor de la tabla (solo afecta a la tabla dentro de section) */
-section table {
+/* Contenedor de la tabla (solo afecta a la calculadora de condicional.php) */
+.calculadora table {
     width: 100%;
     max-width: 500px;
     margin: 0 auto 30px auto;
@@ -174,8 +174,8 @@ section table {
 }
 
 /* Celdas de la tabla */
-section table th,
-section table td {
+.calculadora table th,
+.calculadora table td {
     padding: 12px;
     text-align: center;
     border: 1px solid var(--cyber-borde);
@@ -183,7 +183,7 @@ section table td {
 }
 
 /* Encabezados de la tabla */
-section table th {
+.calculadora table th {
     background-color: rgba(0, 240, 255, 0.1);
     color: var(--cyber-neon);
     text-transform: uppercase;
@@ -192,7 +192,7 @@ section table th {
 }
 
 /* Inputs de texto (números) dentro de la tabla */
-section table input[type="text"] {
+.calculadora table input[type="text"] {
     width: 100%;
     padding: 10px;
     background-color: #0a0a12;
@@ -205,13 +205,13 @@ section table input[type="text"] {
     transition: var(--transicion);
 }
 
-section table input[type="text"]:focus {
+.calculadora table input[type="text"]:focus {
     border-color: var(--cyber-neon);
     box-shadow: var(--cyber-sombra);
 }
 
 /* Botones de operación (los input submit dentro de la tabla) */
-section table input[type="submit"] {
+.calculadora table input[type="submit"] {
     width: 100%;
     padding: 10px;
     margin: 3px 0;
@@ -227,19 +227,19 @@ section table input[type="submit"] {
     box-shadow: 0 0 5px rgba(0, 240, 255, 0.2);
 }
 
-section table input[type="submit"]:hover {
+.calculadora table input[type="submit"]:hover {
     background-color: var(--cyber-neon);
     color: var(--cyber-fondo);
     box-shadow: var(--cyber-sombra-fuerte);
     transform: scale(1.05);
 }
 
-section table input[type="submit"]:active {
+.calculadora table input[type="submit"]:active {
     transform: scale(0.95);
 }
 
 /* Resultado de la operación (el div que genera PHP) */
-section div {
+.calculadora div {
     text-align: center;
     font-size: 1.3rem;
     margin: 15px auto;
@@ -252,7 +252,7 @@ section div {
     font-family: 'Courier New', monospace;
 }
 
-section div b {
+.calculadora div b {
     color: var(--cyber-neon-alt);
     /* Magenta para el resultado */
     text-shadow: 0 0 10px rgba(255, 0, 170, 0.6);
@@ -309,25 +309,25 @@ footer p {
     }
 
     /* Ajuste de la tabla en móviles */
-    section table {
+    .calculadora table {
         max-width: 100%;
     }
+}
 
-    /* ==========================================
+/* ==========================================
    9. SALUDO DE BIENVENIDA
    ========================================== */
-    .saludo-bienvenida {
-        max-width: 1200px;
-        width: 90%;
-        margin: 20px auto 0 auto;
-        padding: 12px 20px;
-        background-color: var(--cyber-fondo);
-        border-left: 4px solid var(--cyber-neon);
-        color: var(--cyber-neon);
-        font-family: 'Courier New', monospace;
-        font-size: 1.1rem;
-        letter-spacing: 1px;
-        text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
-        border-radius: 0 5px 5px 0;
-    }
+.saludo-bienvenida {
+    max-width: 1200px;
+    width: 90%;
+    margin: 20px auto 0 auto;
+    padding: 12px 20px;
+    background-color: var(--cyber-fondo);
+    border-left: 4px solid var(--cyber-neon);
+    color: var(--cyber-neon);
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+    border-radius: 0 5px 5px 0;
 }
