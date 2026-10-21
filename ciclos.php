@@ -69,15 +69,17 @@
             </table>
         </form>
         <?php
-            $numero = $_GET['numero'];
-            echo "<table border=5 width = 300 cellspacing = 10 cellspadding = 10>";
-            echo "<tr><th colspan = 5> Tabla del $numero</th> </tr>";
-            for ($k = 1; $k <= 10; $k++) {
-                echo "<tr> <td>$k <td>* <td>$numero <td> = <td>" . ($k * $numero) . "</tr>";
+            // Solo se muestra la tabla cuando el usuario envía un número
+            if (isset($_GET['numero']) && $_GET['numero'] !== '') {
+                $numero = (int) $_GET['numero'];
+                echo "<table border=5 width = 300 cellspacing = 10 cellspadding = 10>";
+                echo "<tr><th colspan = 5> Tabla del $numero</th> </tr>";
+                for ($k = 1; $k <= 10; $k++) {
+                    echo "<tr> <td>$k <td>* <td>$numero <td> = <td>" . ($k * $numero) . "</tr>";
+                }
+                echo "</table>";
             }
-            echo "</table>";
             if(isset($_GET['todo'])){    
-                $numero = $_GET['numero'];
                 for($tabla = 1; $tabla <= 10; $tabla++){
                     echo "<table border=5 width = 300>";
                     echo "<tr><th colspan = 5> Tabla del $tabla</th> </tr>";

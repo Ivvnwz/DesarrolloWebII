@@ -180,8 +180,6 @@ echo "Hola $usuario, tu total es: $$total";
 
     </main>
 
-    <script src="script.js"></script>
-
     <footer>
 
     </footer>
