@@ -106,7 +106,7 @@ if (is_file($carpeta . '/resumen.json')) {
         <h1>Análisis de datos con Python</h1>
         <h2>Objetivos de aprendizaje</h2>
 
-        Al terminar esta clase, el estudiante será capaz de:
+        <p>Al terminar esta clase, el estudiante será capaz de:</p>
 
         <ul>
             <li>Comprender qué es un archivo CSV y su estructura</li>
@@ -122,28 +122,49 @@ if (is_file($carpeta . '/resumen.json')) {
             <li> Interpretar los resultados con criterio analítico.</li>
         </ul>
 
-        <h2>1. Descargar los datos</h2>
+        <h2>Sistema de información climática</h2>
         <p>
-            Clima diario de Popayán del último año, obtenido en tiempo real desde la API
-            pública de <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>.
+            Flujo completo: los datos se descargan desde una API real, se suben al servidor y Python
+            (pandas + matplotlib) los procesa para generar el reporte y sus gráficas.
         </p>
-        <a class="boton" href="api/clima_popayan.php">Descargar CSV del clima</a>
 
-        <h2>2. Subir el CSV</h2>
-        <form method="POST" enctype="multipart/form-data">
-            <input type="file" name="csv" accept=".csv,text/csv" required>
-            <button type="submit">Subir y analizar</button>
-        </form>
+        <ol class="pasos">
+            <li class="paso">
+                <span class="paso-numero">1</span>
+                <h3>Descargar los datos</h3>
+                <p>
+                    Clima diario de Popayán del último año, obtenido en tiempo real desde la API
+                    pública de <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>.
+                </p>
+                <a class="boton boton-secundario" href="api/clima_popayan.php">Descargar CSV del clima</a>
+            </li>
+
+            <li class="paso">
+                <span class="paso-numero">2</span>
+                <h3>Subir el CSV</h3>
+                <form method="POST" enctype="multipart/form-data" id="formulario-csv">
+                    <input type="file" name="csv" accept=".csv,text/csv" required>
+                    <button type="submit">Subir y analizar</button>
+                </form>
+            </li>
+
+            <li class="paso<?= $resumen ? ' paso-listo' : '' ?>">
+                <span class="paso-numero">3</span>
+                <h3>Reporte y PDF</h3>
+                <?php if ($resumen): ?>
+                    <p>Reporte generado. Revísalo abajo o descárgalo en PDF.</p>
+                    <a class="boton" href="exportar_pdf.php">Exportar reporte a PDF</a>
+                <?php else: ?>
+                    <p>Sube el CSV para generar el reporte con sus 5 gráficas.</p>
+                <?php endif; ?>
+            </li>
+        </ol>
 
         <?php if ($mensaje !== ''): ?>
             <p class="alerta alerta-<?= $tipoMensaje ?>"><?= $mensaje ?></p>
         <?php endif; ?>
 
         <?php if ($resumen): ?>
-            <h2>3. Reporte</h2>
-            <p class="acciones-reporte">
-                <a class="boton" href="exportar_pdf.php">Exportar reporte a PDF</a>
-            </p>
             <article class="reporte" id="reporte">
                 <header class="reporte-encabezado">
                     <p class="reporte-etiqueta">Sistema de información climática</p>
@@ -210,6 +231,15 @@ if (is_file($carpeta . '/resumen.json')) {
             </article>
         <?php endif; ?>
     </section>
+
+    <script>
+        // Mientras Python procesa el archivo, avisar y evitar doble envío
+        document.getElementById('formulario-csv').addEventListener('submit', function () {
+            var boton = this.querySelector('button');
+            boton.disabled = true;
+            boton.textContent = 'Analizando con Python…';
+        });
+    </script>
 </body>
 
 </html>

@@ -726,3 +726,261 @@ section pre + h3 {
     height: 340px;
     max-width: 420px;
 }
+
+/* ==========================================
+   11. ANÁLISIS DE DATOS: PASOS DEL FLUJO
+   ========================================== */
+section ol.pasos {
+    list-style: none;
+    margin: 20px 0 8px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.paso {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin: 0 !important;
+    padding: 22px 22px 22px;
+    background-color: var(--color-fondo);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    transition: var(--transicion);
+}
+
+.paso:hover {
+    border-color: #CBD3DD;
+    box-shadow: var(--sombra-suave);
+}
+
+.paso-listo {
+    background-color: #F1F8F4;
+    border-color: #BFE0CD;
+}
+
+.paso-numero {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--color-secundario);
+    color: var(--color-blanco);
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+}
+
+.paso-listo .paso-numero {
+    background-color: var(--color-exito);
+}
+
+.paso h3 {
+    margin: 0;
+}
+
+.paso p {
+    font-size: 0.93rem;
+    color: var(--color-texto-suave);
+    margin-bottom: 12px;
+    flex: 1;
+}
+
+.paso form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+input[type="file"] {
+    padding: 8px;
+    font-size: 0.88rem;
+    background-color: var(--color-superficie);
+}
+
+input[type="file"]::file-selector-button {
+    font: inherit;
+    font-weight: 600;
+    margin-right: 10px;
+    padding: 6px 12px;
+    border: 1px solid #CBD3DD;
+    border-radius: 6px;
+    background-color: var(--color-fondo);
+    color: var(--color-secundario);
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: 0.7;
+    cursor: progress;
+    transform: none;
+}
+
+/* ==========================================
+   12. REPORTE
+   ========================================== */
+.reporte {
+    margin-top: 32px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    overflow: hidden;
+    box-shadow: var(--sombra-fuerte);
+    background-color: var(--color-superficie);
+}
+
+/* Anula la regla global de <header> (pensada para el banner) */
+.reporte header.reporte-encabezado {
+    display: block;
+    background-color: var(--color-secundario);
+    border-bottom: 3px solid var(--color-primario);
+    color: var(--color-blanco);
+    padding: 32px 36px 28px;
+}
+
+.reporte-etiqueta {
+    font-size: 0.75rem !important;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #F2BA6E;
+    margin-bottom: 4px !important;
+}
+
+section .reporte-titulo {
+    color: var(--color-blanco);
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin: 0 0 4px;
+}
+
+.reporte-subtitulo {
+    color: #C9D5E3;
+    margin-bottom: 22px !important;
+}
+
+.reporte-datos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px 24px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.reporte-datos dt {
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #9FB2C8;
+}
+
+.reporte-datos dd {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+section ul.indicadores {
+    list-style: none;
+    margin: 28px 36px 8px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+}
+
+.indicadores li {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 0;
+    padding: 16px 18px;
+    background-color: var(--color-fondo);
+    border: 1px solid var(--color-borde);
+    border-top: 3px solid var(--color-primario);
+    border-radius: 10px;
+}
+
+.indicador-valor {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--color-secundario);
+    line-height: 1.3;
+}
+
+.indicador-nombre {
+    font-size: 0.85rem;
+    color: var(--color-texto-suave);
+}
+
+section .reporte-seccion {
+    margin: 28px 36px 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.reporte-resumen {
+    margin: 0 36px 8px !important;
+    line-height: 1.75;
+}
+
+/* Gráficas de Python en una columna: así sus textos se leen a buen tamaño */
+.reporte-graficas {
+    display: grid;
+    gap: 20px;
+    padding: 0 36px 36px;
+}
+
+.grafica {
+    margin: 0;
+    padding: 16px;
+    border: 1px solid var(--color-borde);
+    border-radius: 10px;
+    background-color: var(--color-superficie);
+}
+
+.grafica img {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.grafica figcaption {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--color-borde);
+    font-size: 0.9rem;
+    color: var(--color-texto-suave);
+}
+
+.grafica figcaption strong {
+    color: var(--color-texto);
+}
+
+@media (max-width: 768px) {
+    .reporte header.reporte-encabezado {
+        padding: 24px 20px;
+    }
+
+    section ul.indicadores,
+    section .reporte-seccion {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .reporte-resumen {
+        margin: 0 20px 8px !important;
+    }
+
+    .reporte-graficas {
+        padding: 0 20px 20px;
+    }
+
+    .grafica {
+        padding: 8px;
+    }
+}
