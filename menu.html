@@ -3,21 +3,24 @@
 </header>
 
 <nav>
-    <ul>
-        <li> <a href="home.php"> Inicio </a></li>
-        <li> <a href="variables.php"> Variables </a></li>
-        <li> <a href="condicional.php"> Condicionales </a></li>
-        <li> <a href="sesion.php"> Sesiones </a></li>
-        <li> <a href="python.php"> Python </a></li>
-        <li> <a href="ia.php"> IA </a></li>
-        <li> <a href="ciclos.php"> Ciclos </a></li>
-        <li> <a href="Vectores.php"> Vectores </a></li>
-        <li> <a href="baseDatos.php"> BaseDatos </a></li>
-    </ul>
+    <div class="nav-contenido">
+        <a class="marca" href="home.php"><span class="marca-icono">php</span>Manual de PHP</a>
+        <ul>
+            <li> <a href="home.php"> Inicio </a></li>
+            <li> <a href="variables.php"> Variables </a></li>
+            <li> <a href="condicional.php"> Condicionales </a></li>
+            <li> <a href="sesion.php"> Sesiones </a></li>
+            <li> <a href="python.php"> Python </a></li>
+            <li> <a href="ia.php"> IA </a></li>
+            <li> <a href="ciclos.php"> Ciclos </a></li>
+            <li> <a href="Vectores.php"> Vectores </a></li>
+            <li> <a href="baseDatos.php"> BaseDatos </a></li>
+        </ul>
+    </div>
 </nav>
 <script>
     // Resalta en el menú la página actual
-    document.querySelectorAll('nav a').forEach(function (enlace) {
+    document.querySelectorAll('nav ul a').forEach(function (enlace) {
         if (enlace.pathname.toLowerCase() === location.pathname.toLowerCase()) {
             enlace.classList.add('activo');
             enlace.scrollIntoView({ block: 'nearest', inline: 'center' });

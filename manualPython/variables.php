@@ -62,6 +62,7 @@ total = producto_a + producto_b</code></pre>
         <h3>Unir (concatenar) textos</h3>
         <pre><code>saludo = "Hola " + nombre</code></pre>
     </section>
+    <?php include '../pie.html'; ?>
 </body>
 
 </html>

@@ -3,20 +3,23 @@
 </header>
 
 <nav>
-    <ul>
-        <li> <a href="index.php"> Inicio </a></li>
-        <li> <a href="Comandos.php"> Comandos </a></li>
-        <li> <a href="variables.php"> Variables </a></li>
-        <li> <a href="operadores.php"> Operadores </a></li>
-        <li> <a href="Graficas.php"> Graficas </a></li>
-        <li> <a href="analisisDeDatos.php"> DataAnalitic </a></li>
-        <li> <a href="logout.php"> Cerrar Sesión </a></li>
+    <div class="nav-contenido">
+        <a class="marca" href="index.php"><span class="marca-icono">py</span>Manual de Python</a>
+        <ul>
+            <li> <a href="index.php"> Inicio </a></li>
+            <li> <a href="Comandos.php"> Comandos </a></li>
+            <li> <a href="variables.php"> Variables </a></li>
+            <li> <a href="operadores.php"> Operadores </a></li>
+            <li> <a href="Graficas.php"> Graficas </a></li>
+            <li> <a href="analisisDeDatos.php"> DataAnalitic </a></li>
+            <li> <a href="logout.php"> Cerrar Sesión </a></li>
     
-    </ul>
+        </ul>
+    </div>
 </nav>
 <script>
     // Resalta en el menú la página actual
-    document.querySelectorAll('nav a').forEach(function (enlace) {
+    document.querySelectorAll('nav ul a').forEach(function (enlace) {
         if (enlace.pathname.toLowerCase() === location.pathname.toLowerCase()) {
             enlace.classList.add('activo');
             enlace.scrollIntoView({ block: 'nearest', inline: 'center' });

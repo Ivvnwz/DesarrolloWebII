@@ -21,6 +21,6 @@
     <h1> IA </h1>
 
 </section>
-<footer></footer>
+<?php include 'pie.html'; ?>
 
 </html>

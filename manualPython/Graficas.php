@@ -25,6 +25,7 @@
         <h3>Composición (dona)</h3>
         <div class="lienzo-grafica lienzo-dona"><canvas id="graficoDona"></canvas></div>
     </section>
+    <?php include '../pie.html'; ?>
 
     <script>
         // Tipografía y colores comunes a las tres gráficas

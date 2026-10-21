@@ -181,9 +181,7 @@ echo "Hola $usuario, tu total es: $$total";
 
     </main>
 
-    <footer>
-
-    </footer>
+    <?php include 'pie.html'; ?>
 
 </body>
 

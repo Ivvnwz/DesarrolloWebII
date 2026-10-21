@@ -98,7 +98,7 @@
 
     </section>
 
-    <footer></footer>
+    <?php include 'pie.html'; ?>
 
 </body>
 

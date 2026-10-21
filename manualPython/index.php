@@ -69,7 +69,7 @@ if edad &gt;= 18:
 else:
     print(f"Hola {nombre}, eres menor de edad.")</code></pre>
     </section>
-    <footer></footer>
+    <?php include '../pie.html'; ?>
 </body>
 
 </html>

@@ -36,6 +36,6 @@
     ?>
 
 </section>
-<footer></footer>
+<?php include 'pie.html'; ?>
 
 </html>

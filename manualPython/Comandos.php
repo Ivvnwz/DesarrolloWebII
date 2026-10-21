@@ -70,6 +70,7 @@ minimo = min(5, 12, 8)</code></pre>
         <pre><code>mi_suma = sumar(5, 10)
 print(mi_suma)</code></pre>
     </section>
+    <?php include '../pie.html'; ?>
 </body>
 
 </html>

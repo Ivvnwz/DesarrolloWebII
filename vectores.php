@@ -49,7 +49,7 @@ foreach ($frutas as $fruta) {
         echo "<p><strong>Promedio:</strong> " . round($promedio, 2) . "</p>";
         ?>
     </section>
-    <footer></footer>
+    <?php include 'pie.html'; ?>
 </body>
 
 </html>

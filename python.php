@@ -56,7 +56,7 @@ if (isset($_POST['enviar'])) {
             </form>
         </div>
     </section>
-    <footer></footer>
+    <?php include 'pie.html'; ?>
 </body>
 
 </html>

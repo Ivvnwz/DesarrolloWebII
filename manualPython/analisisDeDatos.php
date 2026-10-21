@@ -143,7 +143,7 @@ if (is_file($carpeta . '/resumen.json')) {
                     Clima diario de Popayán del último año, obtenido en tiempo real desde la API
                     pública de <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>.
                 </p>
-                <a class="boton boton-secundario" href="api/clima_popayan.php">Descargar CSV del clima</a>
+                <a class="boton boton-secundario" href="api/clima_popayan.php"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>Descargar CSV del clima</a>
             </li>
 
             <li class="paso">
@@ -151,7 +151,7 @@ if (is_file($carpeta . '/resumen.json')) {
                 <h3>Subir el CSV</h3>
                 <form method="POST" enctype="multipart/form-data" id="formulario-csv">
                     <input type="file" name="csv" accept=".csv,text/csv" required>
-                    <button type="submit">Subir y analizar</button>
+                    <button type="submit"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V9m0 0-5 5m5-5 5 5M4 7V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2"/></svg>Subir y analizar</button>
                 </form>
             </li>
 
@@ -160,7 +160,7 @@ if (is_file($carpeta . '/resumen.json')) {
                 <h3>Reporte y PDF</h3>
                 <?php if ($resumen): ?>
                     <p>Reporte generado. Revísalo abajo o descárgalo en PDF.</p>
-                    <a class="boton" href="exportar_pdf.php">Exportar reporte a PDF</a>
+                    <a class="boton boton-acento" href="exportar_pdf.php"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 15h6M9 18h4"/></svg>Exportar reporte a PDF</a>
                 <?php else: ?>
                     <p>Sube el CSV para generar el reporte con sus 6 gráficas.</p>
                 <?php endif; ?>
@@ -264,13 +264,14 @@ if (is_file($carpeta . '/resumen.json')) {
             </article>
         <?php endif; ?>
     </section>
+    <?php include '../pie.html'; ?>
 
     <script>
         // Mientras Python procesa el archivo, avisar y evitar doble envío
         document.getElementById('formulario-csv').addEventListener('submit', function () {
             var boton = this.querySelector('button');
             boton.disabled = true;
-            boton.textContent = 'Analizando con Python…';
+            boton.lastChild.textContent = 'Analizando con Python…';
         });
     </script>
 </body>

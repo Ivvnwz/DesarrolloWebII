@@ -68,6 +68,7 @@ contador -= 3   # contador = contador - 3  -> 12
 contador *= 2   # contador = contador * 2  -> 24
 contador /= 4   # contador = contador / 4  -> 6.0</code></pre>
     </section>
+    <?php include '../pie.html'; ?>
 </body>
 
 </html>
