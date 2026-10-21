@@ -1,5 +1,6 @@
 <?php
 require 'proteger.php';
+require 'config_python.php';
 
 // Columnas que debe traer el CSV descargado desde la API
 $columnasRequeridas = [
@@ -47,19 +48,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv'])) {
             }
             move_uploaded_file($archivo['tmp_name'], $carpeta . '/clima.csv');
 
-            $_SESSION['csv_subido'] = [
-                'nombre' => basename($archivo['name']),
-                'filas'  => $filas,
-                'fecha'  => date('Y-m-d H:i'),
-            ];
-            $mensaje = 'Archivo "' . htmlspecialchars(basename($archivo['name'])) . "\" cargado: $filas registros.";
-            $tipoMensaje = 'exito';
+            // Borrar el análisis anterior y procesar el CSV con Python (pandas + matplotlib)
+            array_map('unlink', array_merge(glob($carpeta . '/grafica*.png') ?: [], glob($carpeta . '/resumen.json') ?: []));
+            $salida = ejecutarPython(__DIR__ . '/analisis_clima.py', [$carpeta . '/clima.csv', $carpeta]);
+
+            if (is_file($carpeta . '/resumen.json')) {
+                $_SESSION['csv_subido'] = [
+                    'nombre' => basename($archivo['name']),
+                    'filas'  => $filas,
+                    'fecha'  => date('Y-m-d H:i'),
+                ];
+                $mensaje = 'Archivo "' . htmlspecialchars(basename($archivo['name'])) . "\" analizado: $filas registros.";
+                $tipoMensaje = 'exito';
+            } else {
+                $mensaje = 'Python no pudo procesar el CSV: <pre>' . htmlspecialchars($salida) . '</pre>';
+            }
         }
     }
 
     if ($tipoMensaje === '') {
         $tipoMensaje = 'error';
     }
+}
+
+// Resultado del último análisis de esta sesión (lo escribe analisis_clima.py)
+$resumen = null;
+if (is_file($carpeta . '/resumen.json')) {
+    $resumen = json_decode(file_get_contents($carpeta . '/resumen.json'), true);
 }
 ?>
 <!DOCTYPE html>
@@ -111,6 +126,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv'])) {
 
         <?php if ($mensaje !== ''): ?>
             <p class="alerta alerta-<?= $tipoMensaje ?>"><?= $mensaje ?></p>
+        <?php endif; ?>
+
+        <?php if ($resumen): ?>
+            <h2>3. Gráficas generadas con Python</h2>
+            <?php foreach ($resumen['graficas'] as $grafica): ?>
+                <figure class="grafica">
+                    <img src="imagen.php?f=<?= urlencode($grafica['archivo']) ?>&amp;v=<?= time() ?>"
+                        alt="<?= htmlspecialchars($grafica['titulo']) ?>">
+                    <figcaption><?= htmlspecialchars($grafica['descripcion']) ?></figcaption>
+                </figure>
+            <?php endforeach; ?>
         <?php endif; ?>
     </section>
 </body>
