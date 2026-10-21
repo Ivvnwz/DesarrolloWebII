@@ -20,6 +20,7 @@ session_start();
     ?>
 
     <section id="inicio" class="seccion hero-info">
+        <?php include 'manualPython/saludo.php'; ?>
         <h2>Bienvenido al mundo de PHP</h2>
         <p class="lead">
             PHP (<strong>PHP: Hypertext Preprocessor</strong>) es un lenguaje de programación

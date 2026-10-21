@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +16,7 @@
     ?>
 
     <section>
+        <?php include 'manualPython/saludo.php'; ?>
 
         <h1> Ciclos </h1>
         Tipos de ciclos php

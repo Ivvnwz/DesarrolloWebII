@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -15,6 +16,7 @@
     ?>
 
     <section class="calculadora">
+        <?php include 'manualPython/saludo.php'; ?>
         <h1>Condicionales</h1>
 
         <form action="condicional.php" method="POST">

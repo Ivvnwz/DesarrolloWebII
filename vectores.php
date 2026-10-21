@@ -13,6 +13,7 @@
 <body>
     <?php include 'menu.html'; ?>
     <section>
+        <?php include 'manualPython/saludo.php'; ?>
         <h1>Vectores (Arrays) en PHP</h1>
         <p>Un vector es una variable que guarda varios valores bajo un mismo nombre.</p>
 

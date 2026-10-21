@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +16,7 @@
     ?>
 </body>
 <section>
+    <?php include 'manualPython/saludo.php'; ?>
     Conceptos fundamentales de PHP
     <h1> Variables </h1>
     En PHP las variables empiezan con el símbolo $ y no requieren declaración de tipo.

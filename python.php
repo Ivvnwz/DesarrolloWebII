@@ -35,6 +35,7 @@ if (isset($_POST['enviar'])) {
     ?>
     <section class="acceso">
         <div class="acceso-tarjeta">
+            <?php include 'manualPython/saludo.php'; ?>
             <p class="acceso-etiqueta">Área privada</p>
             <h1>Acceder al manual de Python</h1>
             <p class="acceso-texto">Inicia sesión para ver el manual y el sistema de análisis de datos.</p>
