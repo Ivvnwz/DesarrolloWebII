@@ -14,3 +14,11 @@
     
     </ul>
 </nav>
+<script>
+    // Resalta en el menú la página actual
+    document.querySelectorAll('nav a').forEach(function (enlace) {
+        if (enlace.pathname.toLowerCase() === location.pathname.toLowerCase()) {
+            enlace.classList.add('activo');
+        }
+    });
+</script>
