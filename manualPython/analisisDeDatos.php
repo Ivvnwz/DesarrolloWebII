@@ -1,7 +1,65 @@
 <?php
 require 'proteger.php';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    shell_exec('python generar_grafica.py 2>&1');
+
+// Columnas que debe traer el CSV descargado desde la API
+$columnasRequeridas = [
+    'fecha', 'temp_max_c', 'temp_min_c', 'temp_media_c',
+    'precipitacion_mm', 'humedad_pct', 'viento_max_kmh', 'radiacion_mj_m2',
+];
+
+// Carpeta de trabajo propia de cada sesión (datos/<id de sesión>/)
+$carpeta = __DIR__ . '/datos/' . preg_replace('/[^A-Za-z0-9_-]/', '', session_id());
+
+$mensaje = '';
+$tipoMensaje = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv'])) {
+    $archivo = $_FILES['csv'];
+    $extension = strtolower(pathinfo($archivo['name'], PATHINFO_EXTENSION));
+
+    if ($archivo['error'] !== UPLOAD_ERR_OK) {
+        $mensaje = 'No se recibió el archivo. Selecciona un CSV e inténtalo de nuevo.';
+    } elseif ($extension !== 'csv') {
+        $mensaje = 'El archivo debe tener extensión .csv';
+    } elseif ($archivo['size'] > 2 * 1024 * 1024) {
+        $mensaje = 'El archivo supera el tamaño máximo de 2 MB.';
+    } else {
+        // Revisar que el encabezado tenga las columnas esperadas
+        $manejador = fopen($archivo['tmp_name'], 'r');
+        $encabezado = fgetcsv($manejador);
+        $filas = 0;
+        while (fgetcsv($manejador) !== false) {
+            $filas++;
+        }
+        fclose($manejador);
+
+        $encabezado = array_map(fn($c) => trim($c, " \t\n\r\0\x0B\xEF\xBB\xBF"), $encabezado ?: []);
+        $faltantes = array_diff($columnasRequeridas, $encabezado);
+
+        if ($faltantes) {
+            $mensaje = 'Al CSV le faltan columnas: ' . implode(', ', $faltantes)
+                . '. Usa el archivo descargado en el paso 1.';
+        } elseif ($filas === 0) {
+            $mensaje = 'El CSV no tiene filas de datos.';
+        } else {
+            if (!is_dir($carpeta)) {
+                mkdir($carpeta, 0777, true);
+            }
+            move_uploaded_file($archivo['tmp_name'], $carpeta . '/clima.csv');
+
+            $_SESSION['csv_subido'] = [
+                'nombre' => basename($archivo['name']),
+                'filas'  => $filas,
+                'fecha'  => date('Y-m-d H:i'),
+            ];
+            $mensaje = 'Archivo "' . htmlspecialchars(basename($archivo['name'])) . "\" cargado: $filas registros.";
+            $tipoMensaje = 'exito';
+        }
+    }
+
+    if ($tipoMensaje === '') {
+        $tipoMensaje = 'error';
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -9,7 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Análisis de Datos</title>
+    <link rel="shortcut icon" href="../imagenes/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="../css/estilos.css">
 </head>
 
@@ -23,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         Al terminar esta clase, el estudiante será capaz de:
 
         <ul>
-            <li>Comprender qué es un archivo CDV y su estructura</li>
+            <li>Comprender qué es un archivo CSV y su estructura</li>
 
             <li>Leer un archivo CSV con pandas.</li>
 
@@ -35,11 +95,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <li> Interpretar los resultados con criterio analítico.</li>
         </ul>
-        <form method="POST">
-            <button type="submit">Generar gráfica desde CSV</button>
+
+        <h2>1. Descargar los datos</h2>
+        <p>
+            Clima diario de Popayán del último año, obtenido en tiempo real desde la API
+            pública de <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>.
+        </p>
+        <a class="boton" href="api/clima_popayan.php">Descargar CSV del clima</a>
+
+        <h2>2. Subir el CSV</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="csv" accept=".csv,text/csv" required>
+            <button type="submit">Subir y analizar</button>
         </form>
-        <?php if (file_exists('datos/grafica.png')): ?>
-            <img src="datos/grafica.png?<?= time() ?>" alt="Gráfica generada" style="max-width:100%">
+
+        <?php if ($mensaje !== ''): ?>
+            <p class="alerta alerta-<?= $tipoMensaje ?>"><?= $mensaje ?></p>
         <?php endif; ?>
     </section>
 </body>
