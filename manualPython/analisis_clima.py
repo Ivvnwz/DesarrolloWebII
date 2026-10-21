@@ -4,8 +4,8 @@ Análisis del clima diario de Popayán.
 Uso:  python analisis_clima.py <archivo.csv> <carpeta_salida>
 
 Lee el CSV descargado desde la API (api/clima_popayan.php) con pandas,
-genera 5 gráficas con matplotlib (líneas, barras, histograma, dispersión
-y torta) y escribe un resumen.json con los indicadores para el reporte.
+genera 6 gráficas con matplotlib (líneas, barras, histograma, dispersión,
+torta y mapa de calor) y escribe un resumen.json con los indicadores.
 """
 import json
 import os
@@ -194,6 +194,40 @@ ejes.axis('equal')
 guardar(figura, 'grafica5_dias_lluvia.png')
 
 # ------------------------------------------------------------------
+# Gráfica 6 - Mapa de calor: temperatura media por mes (filas) y día (columnas)
+# ------------------------------------------------------------------
+calor = datos.pivot_table(index='mes', columns=datos['fecha'].dt.day,
+                          values='temp_media_c', aggfunc='mean')
+calor = calor.reindex(columns=range(1, 32))
+temp_mes = datos.groupby('mes')['temp_media_c'].mean()
+mes_calido = temp_mes.idxmax()
+mes_fresco = temp_mes.idxmin()
+
+# Escala secuencial de un solo tono (claro = fresco, oscuro = cálido)
+escala = matplotlib.colors.LinearSegmentedColormap.from_list(
+    'calor', ['#FDF3E6', '#F5C98A', '#E08A1E', '#B4531A', '#6E2A10'])
+escala.set_bad('white')
+
+figura, ejes = grafica.subplots(figsize=(9, 4.5))
+malla = ejes.pcolormesh(calor.columns, range(len(calor.index)), calor.values,
+                        cmap=escala, edgecolors='white', linewidth=1.5, shading='nearest')
+ejes.set_yticks(range(len(calor.index)))
+ejes.set_yticklabels([f'{MESES[p.month - 1]} {str(p.year)[2:]}' for p in calor.index])
+ejes.invert_yaxis()
+ejes.set_xticks([1, 5, 10, 15, 20, 25, 31])
+ejes.set_xlabel('Día del mes')
+ejes.grid(False)
+ejes.tick_params(length=0)
+for borde in ejes.spines.values():
+    borde.set_visible(False)
+barra = figura.colorbar(malla, ax=ejes, fraction=0.035, pad=0.02)
+barra.set_label('Temperatura media (°C)')
+barra.outline.set_visible(False)
+barra.ax.tick_params(length=0)
+ejes.set_title('Mapa de calor: temperatura media por día')
+guardar(figura, 'grafica6_mapa_calor.png')
+
+# ------------------------------------------------------------------
 # Resumen para el reporte
 # ------------------------------------------------------------------
 dia_caluroso = datos.loc[datos['temp_max_c'].idxmax()]
@@ -227,6 +261,14 @@ resumen = {
     'humedad_media': round(float(pares['humedad_pct'].mean()), 1),
     'correlacion': round(float(correlacion), 2),
     'dias_por_categoria': {str(c): int(n) for c, n in conteo.items()},
+    'meses': [
+        {'mes': nombre_mes(periodo), 'dias': int(len(grupo)),
+         'temp_media': round(float(grupo['temp_media_c'].mean()), 1),
+         'temp_max': round(float(grupo['temp_max_c'].max()), 1),
+         'temp_min': round(float(grupo['temp_min_c'].min()), 1),
+         'lluvia': round(float(grupo['precipitacion_mm'].sum()), 1)}
+        for periodo, grupo in datos.groupby('mes')
+    ],
     'graficas': [
         {'archivo': 'grafica1_temperatura.png', 'titulo': 'Evolución de la temperatura',
          'descripcion': 'Tendencia de las temperaturas máxima, media y mínima suavizada con una media móvil de 7 días.'},
@@ -238,6 +280,10 @@ resumen = {
          'descripcion': f'Correlación r = {numero(correlacion, 2)}: {relacion}.'},
         {'archivo': 'grafica5_dias_lluvia.png', 'titulo': 'Intensidad de la lluvia',
          'descripcion': f'{dias_lluvia} de {len(datos)} días registraron al menos 1 mm de lluvia.'},
+        {'archivo': 'grafica6_mapa_calor.png', 'titulo': 'Mapa de calor de la temperatura',
+         'descripcion': f'Cada celda es un día: {nombre_mes(mes_calido)} fue el mes más cálido '
+                        f'({numero(temp_mes.max())} °C de media) y {nombre_mes(mes_fresco)} '
+                        f'el más fresco ({numero(temp_mes.min())} °C).'},
     ],
 }
 

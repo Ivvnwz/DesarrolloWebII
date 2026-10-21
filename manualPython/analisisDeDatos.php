@@ -162,7 +162,7 @@ if (is_file($carpeta . '/resumen.json')) {
                     <p>Reporte generado. Revísalo abajo o descárgalo en PDF.</p>
                     <a class="boton" href="exportar_pdf.php">Exportar reporte a PDF</a>
                 <?php else: ?>
-                    <p>Sube el CSV para generar el reporte con sus 5 gráficas.</p>
+                    <p>Sube el CSV para generar el reporte con sus 6 gráficas.</p>
                 <?php endif; ?>
             </li>
         </ol>
@@ -235,6 +235,32 @@ if (is_file($carpeta . '/resumen.json')) {
                         </figure>
                     <?php endforeach; ?>
                 </div>
+
+                <?php if (!empty($resumen['meses'])): ?>
+                    <h3 class="reporte-seccion">Resumen por mes</h3>
+                    <div class="reporte-tabla">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Mes</th><th>Días</th><th>T. media</th>
+                                    <th>T. máxima</th><th>T. mínima</th><th>Lluvia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($resumen['meses'] as $mes): ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars(ucfirst($mes['mes'])) ?></td>
+                                        <td><?= $mes['dias'] ?></td>
+                                        <td><?= number_format($mes['temp_media'], 1, ',', '.') ?> °C</td>
+                                        <td><?= number_format($mes['temp_max'], 1, ',', '.') ?> °C</td>
+                                        <td><?= number_format($mes['temp_min'], 1, ',', '.') ?> °C</td>
+                                        <td><?= number_format($mes['lluvia'], 0, ',', '.') ?> mm</td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php endif; ?>
             </article>
         <?php endif; ?>
     </section>

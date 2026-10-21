@@ -3,7 +3,7 @@ Genera el reporte climático en PDF con fpdf.
 
 Uso:  python reporte_pdf.py <carpeta> <usuario> "<AAAA-MM-DD HH:MM>" <archivo_csv> <salida.pdf>
 
-Toma el resumen.json y las 5 gráficas que dejó analisis_clima.py en <carpeta>.
+Toma el resumen.json y las gráficas que dejó analisis_clima.py en <carpeta>.
 """
 import json
 import os
@@ -201,6 +201,37 @@ for indice in range(1, len(graficas), 2):
     pdf.add_page()
     for numero_figura in range(indice, min(indice + 2, len(graficas))):
         figura(pdf, numero_figura + 1, graficas[numero_figura])
+
+# ------------------------------------------------------------------
+# Tabla de resumen por mes (en el espacio libre de la última página)
+# ------------------------------------------------------------------
+columnas = [('Mes', 52, 'L'), ('Días', 20, 'C'), ('T. media', 27, 'R'),
+            ('T. máxima', 27, 'R'), ('T. mínima', 27, 'R'), ('Lluvia', 26.9, 'R')]
+alto_fila = 6.2
+if pdf.get_y() + 14 + alto_fila * (len(resumen['meses']) + 1) > LIMITE_INFERIOR:
+    pdf.add_page()
+
+titulo_seccion(pdf, 'Resumen por mes')
+pdf.set_x(MARGEN)
+pdf.set_font('Helvetica', 'B', 8.5)
+pdf.set_fill_color(*AZUL_OSCURO)
+pdf.set_text_color(255, 255, 255)
+for nombre, ancho, alineacion in columnas:
+    pdf.cell(ancho, alto_fila + 0.8, nombre, align=alineacion, fill=True)
+pdf.ln()
+
+pdf.set_font('Helvetica', '', 8.5)
+pdf.set_draw_color(*BORDE)
+for indice, mes in enumerate(resumen['meses']):
+    pdf.set_x(MARGEN)
+    pdf.set_fill_color(*(FONDO if indice % 2 else (255, 255, 255)))
+    pdf.set_text_color(*TEXTO)
+    valores = [mes['mes'].capitalize(), str(mes['dias']), f"{numero(mes['temp_media'])} °C",
+               f"{numero(mes['temp_max'])} °C", f"{numero(mes['temp_min'])} °C",
+               f"{numero(mes['lluvia'], 0)} mm"]
+    for (nombre, ancho, alineacion), valor in zip(columnas, valores):
+        pdf.cell(ancho, alto_fila, valor, border='B', align=alineacion, fill=True)
+    pdf.ln()
 
 pdf.output(salida)
 print('OK')

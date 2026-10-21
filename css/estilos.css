@@ -1000,3 +1000,36 @@ section .reporte-seccion {
         padding: 8px;
     }
 }
+
+/* Tabla de resumen por mes del reporte */
+.reporte-tabla {
+    padding: 0 36px 36px;
+    overflow-x: auto;
+}
+
+.reporte-tabla table {
+    width: 100%;
+    margin: 0;
+    font-size: 0.92rem;
+}
+
+.reporte-tabla th {
+    background-color: var(--color-secundario);
+    color: var(--color-blanco);
+    border-color: var(--color-secundario);
+}
+
+.reporte-tabla td:not(:first-child),
+.reporte-tabla th:not(:first-child) {
+    text-align: right;
+}
+
+.reporte-tabla tbody tr:nth-child(even) {
+    background-color: var(--color-fondo);
+}
+
+@media (max-width: 768px) {
+    .reporte-tabla {
+        padding: 0 20px 20px;
+    }
+}
