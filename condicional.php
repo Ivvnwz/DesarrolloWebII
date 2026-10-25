@@ -116,6 +116,88 @@
             }
         }
         ?>
+
+        <!-- ========================================== -->
+        <!-- EXPLICACIÓN Y CÓDIGO FUENTE (AÑADIDO)      -->
+        <!-- ========================================== -->
+
+        <hr>
+
+        <h2>¿Cómo funcionan los condicionales aquí?</h2>
+        <p>
+            Esta calculadora usa la estructura <code>switch</code>, que es una alternativa a los
+            <code>if...elseif...else</code> cuando se tienen muchas opciones. Evalúa el valor de
+            <code>$operacion</code> (el botón que presionaste) y ejecuta el bloque <code>case</code> que coincida.
+        </p>
+
+        <ul class="lista-caracteristicas">
+            <li><strong>if / else:</strong> Se usan dentro de los casos de división, raíz y logaritmo para validar errores (como dividir entre cero o sacar raíz de un negativo).</li>
+            <li><strong>switch:</strong> Es el condicional principal que decide qué operación matemática realizar según el botón.</li>
+            <li><strong>break:</strong> Detiene la ejecución del switch para que no se sigan evaluando los demás casos.</li>
+        </ul>
+
+        <div class="concepto">
+            <h3>Código fuente de la calculadora</h3>
+            <p>Este es el código PHP que procesa las operaciones:</p>
+
+            <pre><code>&lt;?php
+if (isset($_POST['operacion'])) {
+    $numero1 = $_POST['numero1'];
+    $numero2 = $_POST['numero2'];
+    $operacion = $_POST['operacion'];
+    $rta = 0;
+
+    switch ($operacion) {
+        case "+":
+            $rta = $numero1 + $numero2;
+            echo "&lt;div&gt;Suma: &lt;b&gt;$rta&lt;/b&gt;&lt;/div&gt;";
+            break;
+        case "-":
+            $rta = $numero1 - $numero2;
+            echo "&lt;div&gt;Resta: &lt;b&gt;$rta&lt;/b&gt;&lt;/div&gt;";
+            break;
+        case "*":
+            $rta = $numero1 * $numero2;
+            echo "&lt;div&gt;Multiplicación: &lt;b&gt;$rta&lt;/b&gt;&lt;/div&gt;";
+            break;
+        case "/":
+            if ($numero2 != 0) {
+                $rta = $numero1 / $numero2;
+                echo "&lt;div&gt;División: &lt;b&gt;$rta&lt;/b&gt;&lt;/div&gt;";
+            } else {
+                echo "&lt;div&gt;Error: No se puede dividir entre cero&lt;/div&gt;";
+            }
+            break;
+        case "R":
+            if ($numero1 &gt;= 0) {
+                $rta = sqrt($numero1);
+                echo "&lt;div&gt;Raíz Cuadrada: &lt;b&gt;$rta&lt;/b&gt;&lt;/div&gt;";
+            } else {
+                echo "&lt;div&gt;Error: La raíz requiere un número positivo&lt;/div&gt;";
+            }
+            break;
+        case "S":
+            $rta = sin($numero1);
+            echo "&lt;div&gt;Seno: &lt;b&gt;$rta&lt;/b&gt;&lt;/div&gt;";
+            break;
+        case "T":
+            $rta = tan($numero1);
+            echo "&lt;div&gt;Tangente: &lt;b&gt;$rta&lt;/b&gt;&lt;/div&gt;";
+            break;
+        case "L":
+            if ($numero1 &gt; 0) {
+                $rta = log($numero1);
+                echo "&lt;div&gt;Logaritmo: &lt;b&gt;$rta&lt;/b&gt;&lt;/div&gt;";
+            } else {
+                echo "&lt;div&gt;Error: El logaritmo requiere un número positivo&lt;/div&gt;";
+            }
+            break;
+    }
+}
+?&gt;</code></pre>
+        </div>
+        <!-- FIN DEL BLOQUE AÑADIDO -->
+
     </section>
 
     <?php include 'pie.html'; ?>
