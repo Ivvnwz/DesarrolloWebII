@@ -2,5 +2,4 @@
 debug.log
 *.log
 
-# Archivos generados por el analisis (subidas, graficas, PDF)
-manualPython/datos/
+
