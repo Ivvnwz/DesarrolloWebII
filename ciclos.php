@@ -64,34 +64,36 @@
                     <td> <input type="submit" name="enviar">
 
                     </td>
-                    <td> <input type="submit" name = "todo" value="todo">
+                    <td> <input type="submit" name="todo" value="todo">
 
                     </td>
                 </tr>
             </table>
         </form>
         <?php
-            // Solo se muestra la tabla cuando el usuario envía un número
-            if (isset($_GET['numero']) && $_GET['numero'] !== '') {
-                $numero = (int) $_GET['numero'];
-                echo "<table border=5 width = 300 cellspacing = 10 cellspadding = 10>";
-                echo "<tr><th colspan = 5> Tabla del $numero</th> </tr>";
-                for ($k = 1; $k <= 10; $k++) {
-                    echo "<tr> <td>$k <td>* <td>$numero <td> = <td>" . ($k * $numero) . "</tr>";
-                }
-                echo "</table>";
+        // Solo se muestra la tabla cuando el usuario envía un número
+        if (isset($_GET['numero']) && $_GET['numero'] !== '') {
+            $numero = (int) $_GET['numero'];
+            echo "<table border=5 width = 300 cellspacing = 10 cellspadding = 10>";
+            echo "<tr><th colspan = 5> Tabla del $numero</th> </tr>";
+            for ($k = 1; $k <= 10; $k++) {
+                echo "<tr> <td>$k <td>* <td>$numero <td> = <td>" . ($k * $numero) . "</tr>";
             }
-            if(isset($_GET['todo'])){    
-                for($tabla = 1; $tabla <= 10; $tabla++){
-                    echo "<table border=5 width = 300>";
-                    echo "<tr><th colspan = 5> Tabla del $tabla</th> </tr>";
-                    //ciclo pa tablas
-                    //ciclo pa multiplicar
-                    echo "</table>";
+            echo "</table>";
+        }
 
+        // Si se presiona "todo", se generan las tablas desde 1 hasta el número ingresado
+        if (isset($_GET['todo']) && isset($_GET['numero']) && $_GET['numero'] !== '') {
+            $limite = (int) $_GET['numero'];
+            for ($tabla = 1; $tabla <= $limite; $tabla++) {
+                echo "<table border=5 width = 300 cellspacing = 10 cellspadding = 10>";
+                echo "<tr><th colspan = 5> Tabla del $tabla</th> </tr>";
+                for ($k = 1; $k <= 10; $k++) {
+                    echo "<tr> <td>$k <td>* <td>$tabla <td> = <td>" . ($k * $tabla) . "</tr>";
                 }
+                echo "</table><br>";
             }
-        
+        }
         ?>
         <h2> For Each </h2>
         Recorre arrays u objetos. Es el más usado para arreglos.
