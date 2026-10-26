@@ -1,24 +1,42 @@
-<header>
-    <img src="../imagenes/banner3.png" alt="Banner Manual de PHP">
-</header>
+<header></header>
 
-<nav>
+<nav aria-label="Navegación principal">
     <div class="nav-contenido">
-        <a class="marca" href="index.php"><span class="marca-icono">py</span>Manual de Python</a>
+        <a class="marca" href="index.php"><span class="marca-icono">py</span><span>Ivan Andres Chimunja Beltran</span></a>
+        <label class="buscador">
+            <span aria-hidden="true">⌕</span>
+            <input type="search" placeholder="Buscar..." aria-label="Buscar en el manual" readonly>
+            <kbd>/</kbd>
+        </label>
+        <p class="sidebar-group-label">GUÍAS</p>
         <ul>
-            <li> <a href="index.php"> Inicio </a></li>
-            <li> <a href="Comandos.php"> Comandos </a></li>
-            <li> <a href="variables.php"> Variables </a></li>
-            <li> <a href="operadores.php"> Operadores </a></li>
-            <li> <a href="Graficas.php"> Graficas </a></li>
-            <li> <a href="analisisDeDatos.php"> DataAnalitic </a></li>
-            <li> <a href="logout.php"> Cerrar Sesión </a></li>
-    
+            <li><a href="index.php"><span class="nav-icon" aria-hidden="true">⌂</span>Inicio</a></li>
+            <li><a href="Comandos.php"><span class="nav-icon" aria-hidden="true">⌘</span>Comandos</a></li>
+            <li><a href="variables.php"><span class="nav-icon" aria-hidden="true">$</span>Variables</a></li>
+            <li><a href="operadores.php"><span class="nav-icon" aria-hidden="true">◇</span>Operadores</a></li>
+            <li><a href="Graficas.php"><span class="nav-icon" aria-hidden="true">▥</span>Gráficas</a></li>
+            <li><a href="analisisDeDatos.php"><span class="nav-icon" aria-hidden="true">▦</span>Análisis de datos</a></li>
+            <li><a href="logout.php"><span class="nav-icon" aria-hidden="true">↪</span>Cerrar sesión</a></li>
         </ul>
+        <div class="sidebar-bottom">
+            <span><span aria-hidden="true">◐</span> Tema oscuro</span>
+            <span aria-hidden="true">‹</span>
+        </div>
     </div>
 </nav>
+
+<aside class="page-outline" aria-label="Índice de esta página">
+    <h2><span aria-hidden="true">☷</span> On this page</h2>
+    <ul>
+        <li><a class="outline-active" href="#inicio">Introducción</a></li>
+        <li><a href="#conceptos">Conceptos</a></li>
+        <li><a href="#ejemplos">Ejemplos</a></li>
+    </ul>
+    <hr>
+    <a class="outline-secondary" href="index.php">Documentación Python <span aria-hidden="true">↗</span></a>
+</aside>
+
 <script>
-    // Resalta en el menú la página actual
     document.querySelectorAll('nav ul a').forEach(function (enlace) {
         if (enlace.pathname.toLowerCase() === location.pathname.toLowerCase()) {
             enlace.classList.add('activo');

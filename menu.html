@@ -1,25 +1,48 @@
-<header>
-    <img src="imagenes/banner3.png" alt="Banner Manual de PHP">
-</header>
+<header></header>
 
-<nav>
+<nav aria-label="Navegación principal">
     <div class="nav-contenido">
-        <a class="marca" href="home.php"><span class="marca-icono">php</span>Manual de PHP</a>
+        <a class="marca" href="home.php"><span class="marca-icono">php</span><span>Ivan Andres Chimunja Beltran</span></a>
+        <label class="buscador">
+            <span aria-hidden="true">⌕</span>
+            <input type="search" placeholder="Buscar..." aria-label="Buscar en el manual" readonly>
+            <kbd>/</kbd>
+        </label>
+        <p class="sidebar-group-label">GUÍAS</p>
         <ul>
-            <li> <a href="home.php"> Inicio </a></li>
-            <li> <a href="variables.php"> Variables </a></li>
-            <li> <a href="condicional.php"> Condicionales </a></li>
-            <li> <a href="sesion.php"> Sesiones </a></li>
-            <li> <a href="python.php"> Python </a></li>
-            <li> <a href="ia.php"> IA </a></li>
-            <li> <a href="ciclos.php"> Ciclos </a></li>
-            <li> <a href="Vectores.php"> Vectores </a></li>
-            <li> <a href="baseDatos.php"> BaseDatos </a></li>
+            <li><a href="home.php"><span class="nav-icon" aria-hidden="true">⌂</span>Inicio</a></li>
+            <li><a href="variables.php"><span class="nav-icon" aria-hidden="true">$</span>Variables</a></li>
+            <li><a href="condicional.php"><span class="nav-icon" aria-hidden="true">◇</span>Condicionales</a></li>
+            <li><a href="ciclos.php"><span class="nav-icon" aria-hidden="true">↻</span>Ciclos</a></li>
+            <li><a href="vectores.php"><span class="nav-icon" aria-hidden="true">▦</span>Vectores</a></li>
+            <li><a href="sesion.php"><span class="nav-icon" aria-hidden="true">◉</span>Sesiones</a></li>
+            <li><a href="baseDatos.php"><span class="nav-icon" aria-hidden="true">▤</span>Base de datos</a></li>
         </ul>
+        <p class="sidebar-group-label">RECURSOS</p>
+        <ul>
+            <li><a href="python.php"><span class="nav-icon" aria-hidden="true">⌘</span>Python</a></li>
+            <li><a href="ia.php"><span class="nav-icon" aria-hidden="true">✳</span>Inteligencia artificial</a></li>
+        </ul>
+        <div class="sidebar-bottom">
+            <span><span aria-hidden="true">◐</span> Tema oscuro</span>
+            <span aria-hidden="true">‹</span>
+        </div>
     </div>
 </nav>
+
+<aside class="page-outline" aria-label="Índice de esta página">
+    <h2><span aria-hidden="true">☷</span> On this page</h2>
+    <ul>
+        <li><a class="outline-active" href="#inicio">Introducción</a></li>
+        <li><a href="#que-es">Conceptos</a></li>
+        <li><a href="#conceptos">Ejemplos</a></li>
+        <li><a href="#ejemplo">Siguiente paso</a></li>
+    </ul>
+    <hr>
+    <a class="outline-secondary" href="home.php">Documentación PHP <span aria-hidden="true">↗</span></a>
+</aside>
+
 <script>
-    // Resalta en el menú la página actual
     document.querySelectorAll('nav ul a').forEach(function (enlace) {
         if (enlace.pathname.toLowerCase() === location.pathname.toLowerCase()) {
             enlace.classList.add('activo');

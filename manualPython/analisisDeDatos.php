@@ -103,7 +103,7 @@ if (is_file($carpeta . '/resumen.json')) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Análisis de Datos</title>
     <link rel="shortcut icon" href="../imagenes/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/estilos.css?v=20261026">
 </head>
 
 <body>

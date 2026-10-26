@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina inicial</title>
     <link rel="shortcut icon" href="imagenes/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilos.css?v=20261026">
 </head>
 
 <body>
@@ -22,7 +22,7 @@
         <form action="condicional.php" method="POST">
             <table>
                 <tr>
-                    <th colspan="2">Calculadora Criolla</th>
+                    <th colspan="2">Operaciones PHP</th>
                 </tr>
                 <tr>
                     <th>Número 1</th>
@@ -125,7 +125,7 @@
 
         <h2>¿Cómo funcionan los condicionales aquí?</h2>
         <p>
-            Esta calculadora usa la estructura <code>switch</code>, que es una alternativa a los
+            Este ejemplo usa la estructura <code>switch</code>, que es una alternativa a los
             <code>if...elseif...else</code> cuando se tienen muchas opciones. Evalúa el valor de
             <code>$operacion</code> (el botón que presionaste) y ejecuta el bloque <code>case</code> que coincida.
         </p>
@@ -137,7 +137,7 @@
         </ul>
 
         <div class="concepto">
-            <h3>Código fuente de la calculadora</h3>
+            <h3>Código fuente del ejemplo</h3>
             <p>Este es el código PHP que procesa las operaciones:</p>
 
             <pre><code>&lt;?php

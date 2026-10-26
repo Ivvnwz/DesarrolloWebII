@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if (!isset($_SESSION['nombre'])) {
+if (($_SESSION['manual_python_autenticado'] ?? false) !== true) {
     header('Location: ../python.php');
     exit();
 }

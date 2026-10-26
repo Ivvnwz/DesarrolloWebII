@@ -3,7 +3,7 @@ session_start();
 //datos de la base de datos
 $loginUsuario = "admin";
 $claveUsuario = "123";
-$nombre = "Elton Tito";
+$nombre = "Ivan Andres Chimunja Beltran";
 $error = '';
 if (isset($_POST['enviar'])) {
     $login = $_POST['login'];
@@ -11,6 +11,7 @@ if (isset($_POST['enviar'])) {
 
     if (($login == $loginUsuario) && ($clave == $claveUsuario)) {
         $_SESSION['nombre'] = $nombre;
+        $_SESSION['manual_python_autenticado'] = true;
         header('Location: manualPython/index.php');
         exit();
     } else {
@@ -26,7 +27,7 @@ if (isset($_POST['enviar'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acceso al manual de Python</title>
     <link rel="shortcut icon" href="imagenes/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilos.css?v=20261026">
 </head>
 
 <body>

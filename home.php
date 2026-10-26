@@ -11,7 +11,7 @@ session_start();
     <title>Página inicial</title>
     <link rel="shortcut icon" href="imagenes/favicon.ico" type="image/x-icon" />
 
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilos.css?v=20261026">
 </head>
 
 <body>

@@ -5,5 +5,5 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 <h3 class="saludo-bienvenida">
-    Bienvenido MR, <?php echo isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Pule'; ?>
+    Bienvenido, <?php echo isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Ivan Andres Chimunja Beltran'; ?>
 </h3>

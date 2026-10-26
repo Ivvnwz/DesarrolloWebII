@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Variables en PHP - Manual</title>
     <link rel="shortcut icon" href="imagenes/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilos.css?v=20261026">
     <style>
         /* Caja para el resultado en pantalla (estilo celeste) */
         .result-container {
@@ -46,7 +46,7 @@
             <h3>Resultado en pantalla:</h3>
             <p>En PHP las variables empiezan con el símbolo $ y no requieren declaración de tipo.</p>
             <?php
-            $nombre = "Juan Andres Pulecio";
+            $nombre = "Ivan Andres Chimunja Beltran";
             echo "<br> Nombre: " . $nombre;
 
             $edad = 19;
@@ -69,7 +69,7 @@
 
             <!-- Usamos tu etiqueta <pre><code> que ya tiene el fondo azul, los puntitos y el texto claro -->
             <pre><code>&lt;?php
-    $nombre = "Juan Andres Pulecio";
+    $nombre = "Ivan Andres Chimunja Beltran";
     echo "&lt;br&gt; Nombre: " . $nombre;
 
     $edad = 19;
